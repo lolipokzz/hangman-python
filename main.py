@@ -4,15 +4,17 @@ import sys
 
 
 def start():
-    print("Нажмите С для старта  или В для выхода")
-    s = input()
-    if s == "С" or s == "с":
-        start_game()
-    elif s == "В" or s == "в":
-        sys.exit()
-    else:
-        print("Некорректный ввод!")
-        start()
+    while True:
+        print("Нажмите С для старта  или В для выхода")
+        s = input()
+        if s == "С" or s == "с":
+            start_game()
+        elif s == "В" or s == "в":
+            sys.exit()
+        else:
+            print("Некорректный ввод!")
+
+
 
 
 def start_game():
@@ -68,6 +70,7 @@ def play_round(word, mistake, masked_word, used_letters):
 
 
     char = input("Введите букву: ")
+    char = char.lower()
     if not validate_letter(char):
         print("Некорректный ввод символа!")
         return mistake, masked_word, word, char, used_letters
@@ -149,7 +152,7 @@ def show_player_status(mistake):
         ══════╧══""")
 
 def validate_letter(char):
-    return bool(re.fullmatch(r'[а-яёА-ЯЁ]+', char))
+    return bool(re.fullmatch(r'[а-яёА-ЯЁ]+', char)) and len(char) == 1
 
 
 def is_win(mistake, masked_word):
