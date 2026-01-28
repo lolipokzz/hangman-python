@@ -1,4 +1,5 @@
 import random
+import re
 import sys
 
 
@@ -10,7 +11,7 @@ def start():
     elif s == "В" or s == "в":
         sys.exit()
     else:
-        print("Invalid input")
+        print("Некорректный ввод!")
         start()
 
 
@@ -50,7 +51,6 @@ def get_word():
         line = random.randint(1, len(lines))
         word = lines[line-1]
     return word
-    return "привет"
 
 
 def get_masked_word(word):
@@ -149,8 +149,7 @@ def show_player_status(mistake):
         ══════╧══""")
 
 def validate_letter(char):
-    return len(char) == 1
-
+    return bool(re.fullmatch(r'[а-яёА-ЯЁ]+', char))
 
 
 def is_win(mistake, masked_word):
